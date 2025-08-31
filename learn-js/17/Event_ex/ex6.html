@@ -10,7 +10,19 @@
     <div id="modal" style="display: none">
       <div>모달 내용</div>
       <button id="closeModalButton">닫기</button>
-      <script></script>
+      <script>
+        const openButton = document.querySelector("#openModalButton");
+        const closeButton = document.querySelector("#closeModalButton");
+
+        openButton.addEventListener("click", (e) => {
+          const modal = document.querySelector("#modal");
+          modal.style.display = "";
+        });
+        closeButton.addEventListener("click", () => {
+          const modal = document.querySelector("#modal");
+          modal.style.display = "none";
+        });
+      </script>
     </div>
   </body>
 </html>

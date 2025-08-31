@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button class="tab" data-target="tab1">탭 1</button>
+      <button class="tab" data-target="tab2">탭 2</button>
+    </div>
+    <div id="tab1" class="tab-content" style="display: none">탭 1 내용</div>
+    <div id="tab2" class="tab-content" style="display: none">탭 2 내용</div>
+    <script>
+      const button1 = document.querySelector(".tab:nth-child(1)");
+      const button2 = document.querySelector(".tab:nth-child(2)");
+      const tab1 = document.querySelector("#tab1");
+      const tab2 = document.querySelector("#tab2");
+      button1.addEventListener("click", () => {
+        tab1.style.display = "";
+        tab2.style.display = "none";
+      });
+
+      button2.addEventListener("click", () => {
+        tab2.style.display = "";
+        tab1.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
