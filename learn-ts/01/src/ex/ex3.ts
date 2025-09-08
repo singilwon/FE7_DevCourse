@@ -83,7 +83,7 @@ let complexStructure: {
 ];
 
 //6
-let nestedData: { id: number; tags: [string, string]; name: string }[] = [
+let nestedData: { id: number; tags: string[]; name: string }[] = [
   { id: 1, tags: ["fruit", "sweet"], name: "apple" },
   { id: 2, tags: ["fruit", "tropical"], name: "mango" },
   { id: 3, tags: ["fruit", "berry"], name: "strawberry" },
