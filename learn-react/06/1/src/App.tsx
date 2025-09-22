@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Input from "./components/input";
 export default function App() {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function App() {
     }
     if (pw.trim() === "") {
       alert("비번 입력");
-      if (emailRef.current) pwRef.current.focus();
+      if (emailRef.current) pwRef.current?.focus();
       return;
     }
   };
