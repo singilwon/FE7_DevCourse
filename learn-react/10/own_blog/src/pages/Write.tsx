@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { axiosInstance } from "../api/axiosInstance";
+import { usePostStore } from "../stores/postStore";
+import { useNavigate } from "react-router";
 
 export default function Write() {
+  const navigate = useNavigate();
+  const addPost = usePostStore((state) => state.addPost);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [writer, setWriter] = useState("");
@@ -20,10 +23,25 @@ export default function Write() {
       alert("모든 입력칸을 입력해주세요");
       return;
     }
+    const data = await addPost({
+      title,
+      category,
+      writer,
+      desc,
+      thumbnail,
+      thumbnailAvatar,
+      createdAt: new Date(),
+    });
+    if (data) {
+      console.log(data);
+      alert("게시물이 등록 완료 되었습니다.");
+      navigate("/");
+    }
   };
 
   const [thumbnail, setThumbnail] = useState("");
-  const handleThumbnailAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const file = e.target.files && e.target.files[0];
     if (file) {
@@ -35,9 +53,18 @@ export default function Write() {
     }
   };
 
-  // const [thumbnailAvatar, setThumbnailAvatar] = useState("");
-  const handleThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [thumbnailAvatar, setThumbnailAvatar] = useState("");
+
+  const handleThumbnailAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setThumbnailAvatar(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
   return (
     <>
